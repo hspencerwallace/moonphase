@@ -6,7 +6,7 @@
 // and 30 is an almost new moon. 
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(windowWidth, windowHeight, WEBGL);
 
 
 
@@ -15,15 +15,16 @@ function setup() {
 function draw() {
   background(0);
 
-
+translate(0, 0, -50)
 ellipse(200, 200, 100, 100)
 
 noFill();
-    translate(300, 300);
-    for (let x = 420; x >= 40; x = x / 1.08) {
+    translate(width/2, height/2);
+    for (let x = width/10; x >= width/20; x = x / 1.08) {
         rotate(radians(frameCount / 2));
         noStroke();
         fill(200, 40);
-        rect(0, 0, x, x);
+        ellipse(0, 0, x, x);
+        // cone(x/2, x);
       }
 }
