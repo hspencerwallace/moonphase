@@ -15,16 +15,23 @@ function setup() {
 function draw() {
   background(0);
 
-translate(0, 0, -50)
-ellipse(200, 200, 100, 100)
+ellipse(-100, -300, 100, 100)
 
 noFill();
-    translate(width/2, height/2);
-    for (let x = width/10; x >= width/20; x = x / 1.08) {
-        rotate(radians(frameCount / 2));
+    // translate(width/2, height/2);
+    for (let x = width/20; x <= width/10; x = x * 1.02) {
+        rotate(radians(frameCount / 20));
         noStroke();
         fill(200, 40);
-        ellipse(0, 0, x, x);
-        // cone(x/2, x);
+        cone(x/2, x);
       }
 }
+
+// function drawMoon(size, color, phase){
+
+//   //this code draws moons
+
+
+
+
+// }
