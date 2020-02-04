@@ -15,16 +15,36 @@ function setup() {
 function draw() {
   background(0);
 
-ellipse(-100, -300, 100, 100)
+ellipse(-100, -100, 100, 100)
 
-noFill();
-    // translate(width/2, height/2);
-    for (let x = width/20; x <= width/10; x = x * 1.02) {
-        rotate(radians(frameCount / 20));
-        noStroke();
-        fill(200, 40);
-        cone(x/2, x);
-      }
+//simple ellipsoid translated back so the "shadow" is in front, on the z axis
+push();
+translate(0, 0, -101)
+ellipsoid(100, 100, 100, 70);
+pop();
+
+//bezier as "shadow" of moon overlayed onto "illuminated" shape
+  push();
+	  fill(25, 25, 25);
+	  beginShape();
+	  vertex(-100, -150);
+	  bezierVertex(100, -75, 100, 75, -100, 150);
+	  endShape(CLOSE)
+  pop();
+
+//rotating loop of many shapes
+    // push();
+	   //  for (let x = width/15; x <= width/5; x = x * 1.02) {
+	   //      noStroke();
+	   //      rotate(radians(frameCount / 20));
+	   //      fill(200, 40);
+	   //      cone(x/2, x);
+	   //    }
+    //  pop();
+
+
+
+
 }
 
 // function drawMoon(size, color, phase){
