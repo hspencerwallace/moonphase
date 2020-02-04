@@ -15,8 +15,6 @@ function setup() {
 function draw() {
   background(0);
 
-ellipse(-100, -100, 100, 100)
-
 //simple ellipsoid translated back so the "shadow" is in front, on the z axis
 push();
 translate(0, 0, -101)
@@ -24,6 +22,8 @@ ellipsoid(100, 100, 100, 70);
 pop();
 
 //bezier as "shadow" of moon overlayed onto "illuminated" shape
+  
+
   push();
 	  fill(25, 25, 25);
 	  beginShape();
