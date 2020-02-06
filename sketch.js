@@ -8,29 +8,52 @@
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
 
-
-
 }
 
 function draw() {
   background(0);
 
-//simple ellipsoid translated back so the "shadow" is in front, on the z axis
+//trying this with spheres
 push();
-translate(0, 0, -101)
-ellipsoid(100, 100, 100, 70);
-pop();
+// translate(50, 0, 0);
+directionalLight(250, 250, 250, 0.25, 0, -1);
+ pop();
 
-//bezier as "shadow" of moon overlayed onto "illuminated" shape
-  
+  // earth
+  // push();
+  // noStroke();
+  // translate(0, -0, 200)
+  // ambientMaterial(250);
+  //   sphere(370)
+  // pop();
 
+  //moon
   push();
-	  fill(25, 25, 25);
-	  beginShape();
-	  vertex(-100, -150);
-	  bezierVertex(100, -75, 100, 75, -100, 150);
-	  endShape(CLOSE)
+  noStroke();
+  translate(600, 0, -800);
+  specularMaterial(250);
+    sphere(100);
   pop();
+
+
+
+
+
+
+// //simple ellipsoid translated back so the "shadow" is in front, on the z axis
+//   push();
+//     translate(0, 0, -101)
+//     ellipsoid(100, 100, 100, 70);
+//   pop();
+
+// //bezier as "shadow" of moon overlayed onto "illuminated" shape
+//   push();
+// 	  fill(25, 25, 25);
+// 	  beginShape();
+//   	  vertex(-100, -150);
+//   	  bezierVertex(100, -75, 100, 75, -100, 150);
+// 	  endShape(CLOSE)
+//   pop();
 
 //rotating loop of many shapes
     // push();
@@ -48,7 +71,6 @@ pop();
 }
 
 // function drawMoon(size, color, phase){
-
 //   //this code draws moons
 
 
