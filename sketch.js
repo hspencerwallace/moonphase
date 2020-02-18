@@ -95,8 +95,10 @@ rotate(c);
     fill(25, 25, 25);
        ambientMaterial(250);
     beginShape();
-     vertex(-100, -150, 50);
-     bezierVertex(112, -105, -20, 112, 105, -20, -100, 150, 50);
+     vertex(-100, -150, 40);
+     bezierVertex(112, -105, 40, 112, 105, 40, -100, 150, 40);
+     bezierVertex(-112, 105, 40, -112, -105, 40, -100, -150, 40);
+
     endShape(CLOSE)
    pop();
 
