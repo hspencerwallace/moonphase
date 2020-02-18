@@ -8,7 +8,6 @@ let stars;
 
 let angle = 0.0;
 
-
 function preload() {
   stars = loadImage('stars.jpg');
 }
@@ -59,9 +58,6 @@ function draw() {
   line(-150, 100, 150, 100);
   pop();
 
-  // let locX = mouseX - height / 2;
-  // let locY = mouseY - width / 2;
-
   // ambientLight(60, 60, 60);
   directionalLight(55, 155, 255, 400, 0, 500);
     // pointLight(155, 55, 55, 0, 0, -100);
@@ -71,6 +67,7 @@ function draw() {
 //bezier as "shadow" of moon overlayed onto "illuminated" shape
  
 push();
+
 rotate(c);
 //phase 0 new
 // push();
@@ -87,20 +84,21 @@ rotate(c);
  //    beginShape();
  //     vertex(-100, -150, 50);
  //     bezierVertex(126, -105, -20, 126, 105, -20, -100, 150, 50);
+
  //    endShape(CLOSE)
  //   pop();
 
-  //phase 2
-  push();
-    fill(25, 25, 25);
-       ambientMaterial(250);
-    beginShape();
-     vertex(-100, -150, 40);
-     bezierVertex(112, -105, 40, 112, 105, 40, -100, 150, 40);
-     bezierVertex(-112, 105, 40, -112, -105, 40, -100, -150, 40);
+  //phase 2 has 2 bezzies so the edge problem isnt happening anymore good
+  // push();
+  //   fill(25, 25, 25);
+  //      ambientMaterial(250);
+  //   beginShape();
+  //    vertex(-100, -150, 40);
+  //    bezierVertex(112, -105, 40, 112, 105, 40, -100, 150, 40);
+  //    bezierVertex(-112, 105, 40, -112, -105, 40, -100, -150, 40);
+  //   endShape(CLOSE)
+  //  pop();
 
-    endShape(CLOSE)
-   pop();
 
   //phase 3 waxing crescent
   // push();
@@ -131,7 +129,7 @@ rotate(c);
   //     endShape(CLOSE)
   //   pop();
 
-//phase 6
+    //phase 6
 
     // push();
     //   fill(25, 25, 25);
@@ -153,7 +151,6 @@ rotate(c);
 
     //phase 8 just over half til, 15 
     // should be first of waning
-
     // push();
     //   fill(25, 25, 25);
     //   beginShape();
@@ -162,6 +159,7 @@ rotate(c);
     //      bezierVertex(-35, 105, -35, -105, 45, -150);
     //   endShape(CLOSE)
     // pop();  
+
 
      //phase 9
 
@@ -196,7 +194,8 @@ rotate(c);
     //   endShape(CLOSE)
     // pop();
 
-       //phase 12
+
+    //phase 12
 
     // push();
     //   fill(25, 25, 25);
@@ -210,7 +209,7 @@ rotate(c);
     //phase 13
 
     // push();
-    //   fill(25, 25, 25);
+    //   fill(125, 25, 25);
     //   beginShape();
     //     vertex(210, -150);
     //     bezierVertex(-200, -125, -200, 125, 210, 150);
@@ -219,32 +218,17 @@ rotate(c);
     // pop();
 
     //phase 14
-
-    // push();
-    //   fill(125, 25, 25);
-    //   beginShape();
-    //     vertex(210, -150);
-    //     bezierVertex(-200, -125, -200, 125, 210, 150);
-    //     bezierVertex(-175, 125, -175, -125, 210, -150);
-    //   endShape(CLOSE)
-    // pop();
-
-
-pop();
+    push();
+      fill(125, 125, 25);
+      beginShape();
+        vertex(210, -150);
+        bezierVertex(-200, -125, -200, 125, 210, 150);
+        bezierVertex(-175, 125, -175, -125, 210, -150);
+      endShape(CLOSE)
+    pop();
 
 
-//rotating loop of many shapes
-    // push();
-	   //  for (let x = width/15; x <= width/5; x = x * 1.02) {
-	   //      noStroke();
-	   //      rotate(radians(frameCount / 20));
-	   //      fill(200, 40);
-	   //      cone(x/2, x);
-	   //    }
-    //  pop();
-
-
-
+// pop();
 
 }
 
@@ -256,6 +240,15 @@ pop();
 
 // }
 
+//rotating loop of many shapes
+    // push();
+     //  for (let x = width/15; x <= width/5; x = x * 1.02) {
+     //      noStroke();
+     //      rotate(radians(frameCount / 20));
+     //      fill(200, 40);
+     //      cone(x/2, x);
+     //    }
+    //  pop();
 
 //trying this with spheres
 // // lights();
