@@ -15,21 +15,26 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
 
+  slider = createSlider(0, 30);
+  slider.position((width/2 - 150), 10);
+  slider.style('width', '300px');
+
 }
 
 function draw() {
   background(0);
 
+  let phase = slider.value();
+  console.log(phase);
 
-//increase the angle value using the most recent jitter value
+// rotation stuff, rotate is below in the moons matrix
   angle = angle + (0.005);
-  //use cosine to get a smooth CW and CCW motion when not jittering
   let c = tan(angle);
-
+//camera rotation stuff
   // camera(0, 20 + sin(frameCount * (0.01)) * 10, 200 + sin(frameCount * 0.001) * 3000, 0, 0, 0, 0, 1, 0);
 
 
-//simple ellipsoid translated back so the "shadow" is in front, on the z axis
+//MOON: simple ellipsoid translated back in Z so the "shadow" is in front
   push();
   // fill(250, 250, 250);
   // ambientMaterial(250);
@@ -39,9 +44,8 @@ function draw() {
   pop();
 
   //planetarium
-
    push();
-  fill(0, 0, 0);
+    fill(0, 0, 0);
     translate(0, 0, -101);
     noStroke();
     texture(stars);
@@ -49,7 +53,6 @@ function draw() {
   pop();
 
 //lines help see where we are in axes
-
   push();
   stroke(250);
   translate(0, 0, -101);
@@ -62,162 +65,191 @@ function draw() {
   directionalLight(55, 155, 255, 400, 0, 500);
     // pointLight(155, 55, 55, 0, 0, -100);
 
-  orbitControl();
+  // orbitControl();
 
-//bezier as "shadow" of moon overlayed onto "illuminated" shape
- 
+//SHADOWS: beziers as "shadow" of moon overlayed onto "illuminated" shape
 push();
-
 rotate(c);
+
 //phase 0 new
-// push();
-//     fill(25, 25, 25);
-//     beginShape();
-//       vertex(-100, -150);
-//       bezierVertex(150, -105, 150, 105, -100, 150);
-//     endShape(CLOSE)
-//   pop();
 
-//phase 1
- // push();
- //     ambientMaterial(250);
- //    beginShape();
- //     vertex(-100, -150, 50);
- //     bezierVertex(126, -105, -20, 126, 105, -20, -100, 150, 50);
+if (phase == 0){
 
- //    endShape(CLOSE)
- //   pop();
+push();
+    ambientMaterial(250);
+    beginShape();
+      vertex(-100, -150, 40);
+      bezierVertex(150, -105, 40, 150, 105, 40, -100, 150, 40);
+      bezierVertex(-150, 105, 40, -150, -105, 40, -100, -150, 40);
 
-  //phase 2 has 2 bezzies so the edge problem isnt happening anymore good
-  // push();
-  //   fill(25, 25, 25);
-  //      ambientMaterial(250);
-  //   beginShape();
-  //    vertex(-100, -150, 40);
-  //    bezierVertex(112, -105, 40, 112, 105, 40, -100, 150, 40);
-  //    bezierVertex(-112, 105, 40, -112, -105, 40, -100, -150, 40);
-  //   endShape(CLOSE)
-  //  pop();
+    endShape(CLOSE)
+  pop();
+}
 
 
-  //phase 3 waxing crescent
-  // push();
-	 //  fill(25, 25, 25);
-	 //  beginShape();
-  // 	  vertex(-100, -150);
-  // 	  bezierVertex(100, -105, 100, 105, -100, 150);
-	 //  endShape(CLOSE)
-  //  pop();
+// phase 1
+if (phase == 1){
+
+ push();
+     ambientMaterial(250);
+    beginShape();
+     vertex(-100, -150, 40);
+     bezierVertex(126, -105, 40, 126, 105, 40, -100, 150, 40);
+     bezierVertex(-126, 105, 40, -126, -105, 40, -100, -150, 40);
+
+    endShape(CLOSE)
+   pop();
+}
+
+  //Phase 2
+if (phase == 2){
+  push();
+    fill(25, 25, 25);
+    ambientMaterial(250);
+    beginShape();
+     vertex(-100, -150, 40);
+     bezierVertex(112, -105, 40, 112, 105, 40, -100, 150, 40);
+     bezierVertex(-112, 105, 40, -112, -105, 40, -100, -150, 40);
+    endShape(CLOSE)
+   pop();
+}
+
+  //phase 3 waxing crescent ish
+  if (phase == 3){
+  push();
+    ambientMaterial(250);
+	  beginShape();
+  	  vertex(-100, -150, 40);
+  	  bezierVertex(100, -105, 40, 100, 105, 40, -100, 150, 40);
+      bezierVertex(-100, 105, 40, -100, -105, 40, -100, -150, 40);
+	  endShape(CLOSE)
+   pop();
+}
 
     //phase 4
-
-    // push();
-    //   fill(25, 25, 25);
-    //   beginShape();
-    //     vertex(-90, -150);
-    //     bezierVertex(82, -105, 82, 105, -90, 150);
-    //   endShape(CLOSE)
-    // pop();
+if (phase == 4){
+    push();
+    ambientMaterial(250);
+      beginShape();
+        vertex(-90, -150, 40);
+        bezierVertex(82, -105, 40, 82, 105, 40, -90, 150, 40);
+        bezierVertex(-82, 105, 40, -82, -105, 40, -90, -150, 40);
+      endShape(CLOSE)
+    pop();
+  }
 
   //phase 5 needs another vertex to block the darkside
-
-  // push();
-  //     fill(25, 25, 25);
-  //     beginShape();
-  //       vertex(-80, -150);
-  //       bezierVertex(63, -105, 63, 105, -80, 150);
-  //     endShape(CLOSE)
-  //   pop();
+if (phase == 5){
+  push();
+    ambientMaterial(250);
+      beginShape();
+        vertex(-80, -150, 40);
+        bezierVertex(63, -105, 40, 63, 105, 40, -80, 150, 40);
+        bezierVertex(-63, 105, 40, -63, -105, 40, -80, -150, 40);
+      endShape(CLOSE)
+    pop();
+  }
 
     //phase 6
-
-    // push();
-    //   fill(25, 25, 25);
-    //   beginShape();
-    //     vertex(-65, -150);
-    //     bezierVertex(46, -105, 46, 105, -65, 150);
-    //   endShape(CLOSE)
-    // pop();
+if (phase == 6){
+    push();
+    ambientMaterial(250);
+      beginShape();
+        vertex(-65, -150, 40);
+        bezierVertex(46, -105, 40, 46, 105, 40, -65, 150, 40);
+        bezierVertex(-46, 105, 40, -46, -105, 40, -65, -150, 40);
+      endShape(CLOSE)
+    pop();
+  }
 
     //phase 7
-
-    // push();
-    //   fill(25, 25, 25);
-    //   beginShape();
-    //     vertex(-40, -150);
-    //     bezierVertex(26, -105, 26, 105, -40, 150);
-    //   endShape(CLOSE)
-    // pop();
+if (phase == 7){
+    push();
+    ambientMaterial(250);
+      beginShape();
+        vertex(-40, -150, 40);
+        bezierVertex(26, -105, 40, 26, 105, 40, -40, 150, 40);
+        bezierVertex(-26, 105, 40, -26, -105, 40, -40, -150, 40);
+      endShape(CLOSE)
+    pop();
+  }
 
     //phase 8 just over half til, 15 
     // should be first of waning
-    // push();
-    //   fill(25, 25, 25);
-    //   beginShape();
-    //     vertex(45, -150);
-    //     bezierVertex(-150, -105, -150, 105, 45, 150);
-    //      bezierVertex(-35, 105, -35, -105, 45, -150);
-    //   endShape(CLOSE)
-    // pop();  
-
+    if (phase == 8){
+    push();
+    ambientMaterial(250);
+      beginShape();
+        vertex(45, -150, 40);
+        bezierVertex(-150, -105, 40, -150, 105, 40, 45, 150, 40);
+         bezierVertex(-35, 105, 40, -35, -105, 40, 45, -150, 40);
+      endShape(CLOSE)
+    pop();  
+}
 
      //phase 9
-
-    // push();
-    //   fill(25, 25, 25);
-    //   beginShape();
-    //     vertex(75, -150);
-    //     bezierVertex(-150, -105, -150, 105, 75, 150);
-    //      bezierVertex(-60, 105, -60, -105, 75, -150);
-    //   endShape(CLOSE)
-    // pop();  
+if (phase == 9){
+    push();
+      fill(25, 25, 25);
+      beginShape();
+        vertex(75, -150);
+        bezierVertex(-150, -105, -150, 105, 75, 150);
+         bezierVertex(-60, 105, -60, -105, 75, -150);
+      endShape(CLOSE)
+    pop();  
+  }
 
       //phase 10
-
-    // push();
-    //   fill(25, 25, 25);
-    //   beginShape();
-    //     vertex(105, -150);
-    //     bezierVertex(-150, -105, -150, 105, 105, 150);
-    //      bezierVertex(-85, 105, -85, -105, 105, -150);
-    //   endShape(CLOSE)
-    // pop();
+if (phase == 10){
+    push();
+      fill(25, 25, 25);
+      beginShape();
+        vertex(105, -150);
+        bezierVertex(-150, -105, -150, 105, 105, 150);
+         bezierVertex(-85, 105, -85, -105, 105, -150);
+      endShape(CLOSE)
+    pop();
+  }
 
       //phase 11
-
-    // push();
-    //   fill(25, 25, 25);
-    //   beginShape();
-    //     vertex(130, -150);
-    //     bezierVertex(-170, -105, -170, 105, 130, 150);
-    //     bezierVertex(-110, 105, -110, -105, 130, -150);
-    //   endShape(CLOSE)
-    // pop();
+if (phase == 11){
+    push();
+      fill(25, 25, 25);
+      beginShape();
+        vertex(130, -150);
+        bezierVertex(-170, -105, -170, 105, 130, 150);
+        bezierVertex(-110, 105, -110, -105, 130, -150);
+      endShape(CLOSE)
+    pop();
+  }
 
 
     //phase 12
-
-    // push();
-    //   fill(25, 25, 25);
-    //   beginShape();
-    //     vertex(170, -150);
-    //     bezierVertex(-200, -105, -200, 105, 170, 150);
-    //     bezierVertex(-135, 105, -135, -105, 170, -150);
-    //   endShape(CLOSE)
-    // pop();
+if (phase == 12){
+    push();
+      fill(25, 25, 25);
+      beginShape();
+        vertex(170, -150);
+        bezierVertex(-200, -105, -200, 105, 170, 150);
+        bezierVertex(-135, 105, -135, -105, 170, -150);
+      endShape(CLOSE)
+    pop();
+  }
 
     //phase 13
-
-    // push();
-    //   fill(125, 25, 25);
-    //   beginShape();
-    //     vertex(210, -150);
-    //     bezierVertex(-200, -125, -200, 125, 210, 150);
-    //     bezierVertex(-162, 125, -162, -125, 210, -150);
-    //   endShape(CLOSE)
-    // pop();
+if (phase == 13){
+    push();
+      fill(125, 25, 25);
+      beginShape();
+        vertex(210, -150);
+        bezierVertex(-200, -125, -200, 125, 210, 150);
+        bezierVertex(-162, 125, -162, -125, 210, -150);
+      endShape(CLOSE)
+    pop();
+  }
 
     //phase 14
+    if (phase == 14){
     push();
       fill(125, 125, 25);
       beginShape();
@@ -226,9 +258,10 @@ rotate(c);
         bezierVertex(-175, 125, -175, -125, 210, -150);
       endShape(CLOSE)
     pop();
+  }
 
 
-// pop();
+pop();
 
 }
 
