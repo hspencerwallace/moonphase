@@ -31,7 +31,7 @@ function draw() {
   angle = angle + (0.005);
   let c = tan(angle);
 //camera rotation stuff
-  // camera(0, 20 + sin(frameCount * (0.01)) * 10, 200 + sin(frameCount * 0.001) * 3000, 0, 0, 0, 0, 1, 0);
+  camera(0, 20 + sin(frameCount * (0.05)) * 10, 200 + sin(frameCount * 0.005) * 3000, 0, 0, 0, 0, 1, 0);
 
 
 //MOON: simple ellipsoid translated back in Z so the "shadow" is in front
@@ -104,7 +104,6 @@ if (phase == 1){
   //Phase 2
 if (phase == 2){
   push();
-    fill(25, 25, 25);
     ambientMaterial(250);
     beginShape();
      vertex(-100, -150, 40);
@@ -138,7 +137,7 @@ if (phase == 4){
     pop();
   }
 
-  //phase 5 needs another vertex to block the darkside
+  //phase 5 
 if (phase == 5){
   push();
     ambientMaterial(250);
@@ -190,11 +189,11 @@ if (phase == 7){
      //phase 9
 if (phase == 9){
     push();
-      fill(25, 25, 25);
+    ambientMaterial(250);
       beginShape();
-        vertex(75, -150);
-        bezierVertex(-150, -105, -150, 105, 75, 150);
-         bezierVertex(-60, 105, -60, -105, 75, -150);
+        vertex(75, -150, 40);
+        bezierVertex(-150, -105, 40, -150, 105, 40, 75, 150, 40);
+         bezierVertex(-60, 105, 40, -60, -105, 40, 75, -150, 40);
       endShape(CLOSE)
     pop();  
   }
@@ -202,11 +201,11 @@ if (phase == 9){
       //phase 10
 if (phase == 10){
     push();
-      fill(25, 25, 25);
+    ambientMaterial(250);
       beginShape();
-        vertex(105, -150);
-        bezierVertex(-150, -105, -150, 105, 105, 150);
-         bezierVertex(-85, 105, -85, -105, 105, -150);
+        vertex(105, -150, 40);
+        bezierVertex(-150, -105, 40, -150, 105, 40, 105, 150, 40);
+         bezierVertex(-85, 105, 40, -85, -105, 40, 105, -150, 40);
       endShape(CLOSE)
     pop();
   }
@@ -214,11 +213,11 @@ if (phase == 10){
       //phase 11
 if (phase == 11){
     push();
-      fill(25, 25, 25);
+    ambientMaterial(250);
       beginShape();
-        vertex(130, -150);
-        bezierVertex(-170, -105, -170, 105, 130, 150);
-        bezierVertex(-110, 105, -110, -105, 130, -150);
+        vertex(130, -150, 40);
+        bezierVertex(-170, -105, 40, -170, 105, 40, 130, 150, 40);
+        bezierVertex(-110, 105, 40, -110, -105, 40, 130, -150, 40);
       endShape(CLOSE)
     pop();
   }
@@ -227,11 +226,11 @@ if (phase == 11){
     //phase 12
 if (phase == 12){
     push();
-      fill(25, 25, 25);
+    ambientMaterial(250);
       beginShape();
-        vertex(170, -150);
-        bezierVertex(-200, -105, -200, 105, 170, 150);
-        bezierVertex(-135, 105, -135, -105, 170, -150);
+        vertex(170, -150, 40);
+        bezierVertex(-200, -105, 40, -200, 105, 40, 170, 150, 40);
+        bezierVertex(-135, 105, 40, -135, -105, 40, 170, -150, 40);
       endShape(CLOSE)
     pop();
   }
@@ -239,30 +238,199 @@ if (phase == 12){
     //phase 13
 if (phase == 13){
     push();
-      fill(125, 25, 25);
+    ambientMaterial(250);
       beginShape();
-        vertex(210, -150);
-        bezierVertex(-200, -125, -200, 125, 210, 150);
-        bezierVertex(-162, 125, -162, -125, 210, -150);
+        vertex(210, -150, 40);
+        bezierVertex(-200, -125, 40, -200, 125, 40, 210, 150, 40);
+        bezierVertex(-162, 125, 40, -162, -125, 40, 210, -150, 40);
       endShape(CLOSE)
     pop();
   }
 
-    //phase 14
+    //phase 14 should be almost full
     if (phase == 14){
     push();
-      fill(125, 125, 25);
+    ambientMaterial(250);
       beginShape();
-        vertex(210, -150);
-        bezierVertex(-200, -125, -200, 125, 210, 150);
-        bezierVertex(-175, 125, -175, -125, 210, -150);
+        vertex(210, -150, 40);
+        bezierVertex(-200, -125, 40, -200, 125, 40, 210, 150, 40);
+        bezierVertex(-175, 125, 40, -175, -125, 40, 210, -150, 40);
       endShape(CLOSE)
     pop();
   }
+
+   //phase 15 should be just starting to wane, and bascially 14 but reversed along x axis
+    if (phase == 15){
+    push();
+    ambientMaterial(250);
+      beginShape();
+        vertex(-210, -150, 40);
+        bezierVertex(200, -125, 40, 200, 125, 40, -210, 150, 40);
+        bezierVertex(175, 125, 40, 175, -125, 40, -210, -150, 40);
+      endShape(CLOSE)
+    pop();
+  }
+
+  //phase 16 is like 13
+if (phase == 16){
+    push();
+    ambientMaterial(250);
+      beginShape();
+        vertex(-210, -150, 40);
+        bezierVertex(200, -125, 40, 200, 125, 40, -210, 150, 40);
+        bezierVertex(162, 125, 40, 162, -125, 40, -210, -150, 40);
+      endShape(CLOSE)
+    pop();
+  }
+
+    //phase 17 is like phase 12
+if (phase == 17){
+    push();
+    ambientMaterial(250);
+      beginShape();
+        vertex(-170, -150, 40);
+        bezierVertex(200, -105, 40, 200, 105, 40, -170, 150, 40);
+        bezierVertex(135, 105, 40, 135, -105, 40, -170, -150, 40);
+      endShape(CLOSE)
+    pop();
+  }
+
+  //phase 18 is like phase 11
+if (phase == 18){
+    push();
+    ambientMaterial(250);
+      beginShape();
+        vertex(-130, -150, 40);
+        bezierVertex(170, -105, 40, 170, 105, 40, -130, 150, 40);
+        bezierVertex(110, 105, 40, 110, -105, 40, -130, -150, 40);
+      endShape(CLOSE)
+    pop();
+  }
+
+      //phase 19 is like phase 10
+if (phase == 19){
+    push();
+    ambientMaterial(250);
+      beginShape();
+        vertex(-105, -150, 40);
+        bezierVertex(150, -105, 40, 150, 105, 40, -105, 150, 40);
+         bezierVertex(85, 105, 40, 85, -105, 40, -105, -150, 40);
+      endShape(CLOSE)
+    pop();
+  }
+
+ //phase 20 is like phase 9
+if (phase == 20){
+    push();
+    ambientMaterial(250);
+      beginShape();
+        vertex(-75, -150, 40);
+        bezierVertex(150, -105, 40, 150, 105, 40, -75, 150, 40);
+         bezierVertex(60, 105, 40, 60, -105, 40, -75, -150, 40);
+      endShape(CLOSE)
+    pop();  
+  }
+
+  //phase 21 is like phase 8
+    if (phase == 21){
+    push();
+    ambientMaterial(250);
+      beginShape();
+        vertex(-45, -150, 40);
+        bezierVertex(150, -105, 40, 150, 105, 40, -45, 150, 40);
+         bezierVertex(35, 105, 40, 35, -105, 40, -45, -150, 40);
+      endShape(CLOSE)
+    pop();  
+}
+
+//phase 22 is like phase 7
+if (phase == 22){
+    push();
+    ambientMaterial(250);
+      beginShape();
+        vertex(40, -150, 40);
+        bezierVertex(-26, -105, 40, -26, 105, 40, 40, 150, 40);
+        bezierVertex(26, 105, 40, 26, -105, 40, 40, -150, 40);
+      endShape(CLOSE)
+    pop();
+  }
+
+   //phase 23 is like phase 6
+if (phase == 23){
+    push();
+    ambientMaterial(250);
+      beginShape();
+        vertex(65, -150, 40);
+        bezierVertex(-46, -105, 40, -46, 105, 40, 65, 150, 40);
+        bezierVertex(46, 105, 40, 46, -105, 40, 65, -150, 40);
+      endShape(CLOSE)
+    pop();
+  }
+
+ //phase 24 is like phase 5 
+if (phase == 24){
+  push();
+    ambientMaterial(250);
+      beginShape();
+        vertex(80, -150, 40);
+        bezierVertex(-63, -105, 40, -63, 105, 40, 80, 150, 40);
+        bezierVertex(63, 105, 40, 63, -105, 40, 80, -150, 40);
+      endShape(CLOSE)
+    pop();
+  }
+
+ //phase 25 is like phase 4
+if (phase == 25){
+    push();
+    ambientMaterial(250);
+      beginShape();
+        vertex(90, -150, 40);
+        bezierVertex(-82, -105, 40, -82, 105, 40, 90, 150, 40);
+        bezierVertex(82, 105, 40, 82, -105, 40, 90, -150, 40);
+      endShape(CLOSE)
+    pop();
+  }
+
+   //phase 26 is like phase 3 
+  if (phase == 26){
+  push();
+    ambientMaterial(250);
+    beginShape();
+      vertex(100, -150, 40);
+      bezierVertex(-100, -105, 40, -100, 105, 40, 100, 150, 40);
+      bezierVertex(100, 105, 40, 100, -105, 40, 100, -150, 40);
+    endShape(CLOSE)
+   pop();
+}
+
+//Phase 27 is like phase 2
+if (phase == 27){
+  push();
+    ambientMaterial(250);
+    beginShape();
+     vertex(100, -150, 40);
+     bezierVertex(-112, -105, 40, -112, 105, 40, 100, 150, 40);
+     bezierVertex(112, 105, 40, 112, -105, 40, 100, -150, 40);
+    endShape(CLOSE)
+   pop();
+}
+
+// phase 28 is like phase 1
+if (phase == 1){
+
+ push();
+     ambientMaterial(250);
+    beginShape();
+     vertex(-100, -150, 40);
+     bezierVertex(126, -105, 40, 126, 105, 40, -100, 150, 40);
+     bezierVertex(-126, 105, 40, -126, -105, 40, -100, -150, 40);
+
+    endShape(CLOSE)
+   pop();
+}
 
 
 pop();
-
 }
 
 // function drawMoon(size, color, phase){
