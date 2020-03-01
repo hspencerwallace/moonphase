@@ -33,16 +33,6 @@ function draw() {
 //camera rotation stuff
   camera(0, 20 + sin(frameCount * (0.05)) * 10, 200 + sin(frameCount * 0.005) * 3000, 0, 0, 0, 0, 1, 0);
 
-
-//MOON: simple ellipsoid translated back in Z so the "shadow" is in front
-  push();
-  // fill(250, 250, 250);
-  // ambientMaterial(250);
-    translate(0, 0, -101);
-    noStroke();
-    ellipsoid(100, 100, 100, 75, 75);
-  pop();
-
   //planetarium
    push();
     fill(0, 0, 0);
@@ -61,14 +51,27 @@ function draw() {
   line(-150, 100, 150, 100);
   pop();
 
-  // ambientLight(60, 60, 60);
   directionalLight(55, 155, 255, 400, 0, 500);
-    // pointLight(155, 55, 55, 0, 0, -100);
 
-  // orbitControl();
+  rotate(c);
+  drawMoon(75, 0, 3);
+
+
+}
+
+ function drawMoon(size, color, phase){
+
+  //MOON: simple ellipsoid translated back in Z so the "shadow" is in front
+  push();
+  // fill(250, 250, 250);
+  // ambientMaterial(250);
+    translate(0, 0, -101);
+    noStroke();
+    //    ellipsoid(100, 100, 100, 75, 75);
+          ellipsoid(100, 100, 100, size, size);
+  pop();
 
 //SHADOWS: beziers as "shadow" of moon overlayed onto "illuminated" shape
-push();
 rotate(c);
 
 //phase 0 new
@@ -430,10 +433,9 @@ if (phase == 1){
 }
 
 
-pop();
 }
 
-// function drawMoon(size, color, phase){
+
 //   //this code draws moons
 
 
