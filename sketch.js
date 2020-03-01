@@ -63,7 +63,7 @@ function draw() {
 
   //MOON: simple ellipsoid translated back in Z so the "shadow" is in front
   push();
-  // fill(250, 250, 250);
+  fill(250, 250, 250);
   // ambientMaterial(250);
     translate(0, 0, -101);
     noStroke();
