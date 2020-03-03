@@ -53,26 +53,30 @@ function draw() {
 
   directionalLight(55, 155, 255, 400, 0, 500);
 
-  rotate(c);
-  drawMoon(75, 0, 3);
+  // rotate(c);
+  drawMoon(75, 250, 250, 250, phase);
 
 
 }
 
- function drawMoon(size, color, phase){
+ function drawMoon(size, color1, color2, color3, phase){
+
+    print(phase);
+
 
   //MOON: simple ellipsoid translated back in Z so the "shadow" is in front
   push();
-  fill(250, 250, 250);
-  // ambientMaterial(250);
+  // fill(250, 250, 250);
+   fill(color1, color2, color3);
+
+  ambientMaterial(250);
     translate(0, 0, -101);
     noStroke();
-    //    ellipsoid(100, 100, 100, 75, 75);
-          ellipsoid(100, 100, 100, size, size);
+//    ellipsoid(100, 100, 100, 75, 75);
+    ellipsoid(100, 100, 100, size, size);
   pop();
 
 //SHADOWS: beziers as "shadow" of moon overlayed onto "illuminated" shape
-rotate(c);
 
 //phase 0 new
 
